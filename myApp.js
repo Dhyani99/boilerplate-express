@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
-var obj = {"message": "Hello json"};
+
+var env = require('dotenv').config();
 
 console.log("Hello World");
 let middleware = express.static(__dirname+'/public');
@@ -11,7 +12,14 @@ app.get('/', function(req, res){
 });
 
 app.get('/json', function(req, res){
-    res.json(obj);
+    
+    if(process.env.MESSAGE_STYLE === "uppercase"){
+        var response = "Hello json".toUpperCase();
+    }else{
+        var response = "Hello json"
+    }
+    let mssg = response;
+    res.json({message : mssg});
 });
 
 
