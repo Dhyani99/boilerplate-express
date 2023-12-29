@@ -3,7 +3,6 @@ let app = express();
 
 var env = require('dotenv').config();
 
-console.log("Hello World");
 let middleware = express.static(__dirname+'/public');
 let mware_func = function(req,res, next){
     console.log(req.method+" "+req.path+" - "+req.ip);
