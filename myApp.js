@@ -44,7 +44,12 @@ app.get('/name', function(req, res){
     res.json({name:`${firstname} ${lastname}`});
 });
 
-
+app.post('/name', function(req, res){
+    var firstname = req.body.first;
+    var lastname = req.body.last;
+    res.json({name:`${firstname} ${lastname}`});
+    
+});
 
 
 
