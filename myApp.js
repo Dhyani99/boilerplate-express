@@ -1,5 +1,6 @@
 let express = require('express');
 let app = express();
+let bodyParser = require('body-parser');
 
 var env = require('dotenv').config();
 
@@ -8,8 +9,11 @@ let mware_func = function(req,res, next){
     console.log(req.method+" "+req.path+" - "+req.ip);
     next();
 };
+let bodyParserMiddleware = bodyParser.urlencoded({extended: false});
+
 app.use('/public',middleware);
 app.use(mware_func);
+app.use(bodyParserMiddleware);
 app.get('/', function(req, res){
     res.sendFile(__dirname+'/views/index.html');
 });
